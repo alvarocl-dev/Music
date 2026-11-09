@@ -22,14 +22,14 @@ A free and open source YouTube Music client for iOS.
 
 ## Installation
 
-Requires iOS 26 or later and a YouTube Music account (sign in through the in-app web view).
+Requires iOS 18 or later and a YouTube Music account (sign in through the in-app web view).
 
 ### Feather / AltStore / SideStore
 
 Add the Trop source, then install the latest stable release (unsigned - your client re-signs it with your Apple ID):
 
 ```
-https://raw.githubusercontent.com/SwiftyMedia/Trop/main/altstore.json
+https://raw.githubusercontent.com/alvarocl-dev/Music/main/altstore.json
 ```
 
 

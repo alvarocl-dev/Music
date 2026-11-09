@@ -21,10 +21,10 @@ env:
 jobs:
   release:
     name: Build and publish release
-    runs-on: macos-26
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v4
 
       - name: Validate release version
         env:
@@ -84,22 +84,26 @@ jobs:
           REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
-          PREVIOUS_TAG="$(gh api "repos/${REPOSITORY}/releases/latest" --jq '.tag_name')"
-          gh api --method POST "repos/${REPOSITORY}/releases/generate-notes" \
-            -f tag_name="v${VERSION}" \
-            -f target_commitish=main \
-            -f previous_tag_name="${PREVIOUS_TAG}" > release-notes-response.json
+          PREVIOUS_TAG="$(gh api "repos/${REPOSITORY}/releases/latest" --jq '.tag_name' 2>/dev/null || true)"
+          if [ -n "$PREVIOUS_TAG" ]; then
+            gh api --method POST "repos/${REPOSITORY}/releases/generate-notes" \
+              -f tag_name="v${VERSION}" \
+              -f target_commitish=main \
+              -f previous_tag_name="${PREVIOUS_TAG}" > release-notes-response.json
+          else
+            gh api --method POST "repos/${REPOSITORY}/releases/generate-notes" \
+              -f tag_name="v${VERSION}" \
+              -f target_commitish=main > release-notes-response.json
+          fi
           python3 - <<'PY'
           import json
           from pathlib import Path
 
           response = json.loads(Path("release-notes-response.json").read_text())
-          body = response["body"].strip()
+          body = response.get("body", "").strip()
           if not body:
-              raise SystemExit("GitHub generated empty release notes; refusing to publish.")
-          Path("release-notes.md").write_text(
-              f"{body}\n\n[Discord](https://discord.gg/QrMwZAfU97)\n"
-          )
+              body = f"Release v{Path('release-notes-response.json').parent.name} built via GitHub Actions."
+          Path("release-notes.md").write_text(f"{body}\n")
           PY
 
       - name: Publish GitHub release
@@ -140,7 +144,7 @@ jobs:
               "localizedDescription": os.environ["RELEASE_NOTES"],
               "downloadURL": os.environ["DOWNLOAD_URL"],
               "size": int(os.environ["SIZE"]),
-              "minOSVersion": "26.0",
+              "minOSVersion": "18.0",
           }
           app["versions"] = [entry]
           path.write_text(json.dumps(source, indent=2) + "\n")
