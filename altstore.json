@@ -14,7 +14,7 @@
       "bundleIdentifier": "com.686udjie.Trop",
       "developerName": "alvarocl-dev",
       "subtitle": "YouTube Music client for iOS",
-      "localizedDescription": "A free and open source YouTube Music client for iOS.\n\n• No ads\n• Stream songs and videos from YouTube Music\n• Background playback with lock screen controls\n• Equalizer & audio normalization\n• Video mode\n• Queue management & listening history\n• Discord status – show current song\n• Last.fm scrobbling\n• Synced lyrics (Musixmatch, Netease, Kugou, LRCLIB, Genius)\n• Library sync (playlists, albums, artists, podcasts)\n• Downloads\n• Custom app icons\n\nRequires iOS 18 or later and a YouTube Music account.",
+      "localizedDescription": "A free and open source YouTube Music client for iOS.\n\n• No ads\n• Stream songs and videos from YouTube Music\n• Background playback with lock screen controls\n• Equalizer & audio normalization\n• Video mode\n• Queue management & listening history\n• Discord status – show current song\n• Last.fm scrobbling\n• Synced lyrics (Musixmatch, Netease, Kugou, LRCLIB, Genius)\n• Library sync (playlists, albums, artists, podcasts)\n• Downloads\n• Custom app icons\n\nRequires iOS 26 or later and a YouTube Music account.",
       "iconURL": "https://raw.githubusercontent.com/alvarocl-dev/Music/main/.github/assets/icon.png",
       "tintColor": "#007AFF",
       "category": "entertainment",
@@ -31,7 +31,7 @@
           "localizedDescription": "Compilación automatizada vía GitHub Actions.\n\nRepositorio: https://github.com/alvarocl-dev/Music",
           "downloadURL": "https://github.com/alvarocl-dev/Music/releases/download/nightly/Trop.ipa",
           "size": 35705569,
-          "minOSVersion": "18.0"
+          "minOSVersion": "26.0"
         }
       ]
     }

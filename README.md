@@ -22,7 +22,7 @@ A free and open source YouTube Music client for iOS.
 
 ## Installation
 
-Requires iOS 18 or later and a YouTube Music account (sign in through the in-app web view).
+Requires iOS 26 or later and a YouTube Music account (sign in through the in-app web view).
 
 ### Feather / AltStore / SideStore
 
